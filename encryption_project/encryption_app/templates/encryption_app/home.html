@@ -1,0 +1,60 @@
+{% extends "encryption_app/base.html" %}
+
+{% block title %}Home - Secure Encryption Tool{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h1 class="section-title">Welcome to the Secure Encryption Tool</h1>
+    
+    <p>
+        This tool provides secure encryption and decryption services using industry-standard cryptographic techniques:
+    </p>
+    
+    <ul>
+        <li>AES-256-GCM encryption algorithm - providing confidentiality and authenticity</li>
+        <li>Argon2id password hashing (with PBKDF2 fallback) - resistant to brute force attacks</li>
+        <li>Cryptographically secure random salt and nonce generation</li>
+    </ul>
+    
+    <p>
+        Your data is processed locally in your browser - nothing is sent to a server, 
+        ensuring your sensitive information remains private.
+    </p>
+    
+    <div class="tab-container">
+        <div class="tab" onclick="window.location.href='{% url 'encrypt' %}'">
+            <span class="material-icons">lock</span> Encrypt Text
+        </div>
+        <div class="tab" onclick="window.location.href='{% url 'decrypt' %}'">
+            <span class="material-icons">lock_open</span> Decrypt Text
+        </div>
+    </div>
+    
+    <h2>How to use</h2>
+    
+    <p>
+        <strong>To encrypt text:</strong>
+    </p>
+    <ol>
+        <li>Go to the Encrypt page</li>
+        <li>Enter your text in the text field</li>
+        <li>Enter a strong password</li>
+        <li>Click "Encrypt" to generate encrypted text</li>
+        <li>Copy the encrypted text using the "Copy" button</li>
+    </ol>
+    
+    <p>
+        <strong>To decrypt text:</strong>
+    </p>
+    <ol>
+        <li>Go to the Decrypt page</li>
+        <li>Paste the encrypted text in the text field</li>
+        <li>Enter the same password that was used for encryption</li>
+        <li>Click "Decrypt" to recover the original text</li>
+    </ol>
+    
+    <div style="margin-top: 24px;">
+        <a href="{% url 'encrypt' %}" class="btn">Start Encrypting</a>
+    </div>
+</div>
+{% endblock %}

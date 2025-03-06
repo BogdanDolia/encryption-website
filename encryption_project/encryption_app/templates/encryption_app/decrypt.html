@@ -1,0 +1,46 @@
+{% extends "encryption_app/base.html" %}
+
+{% block title %}Decrypt - Secure Encryption Tool{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h1 class="section-title">
+        <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">lock_open</span>
+        Decrypt Text
+    </h1>
+    
+    <p>Enter the encrypted text and the password that was used for encryption.</p>
+    
+    <form method="post">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label for="text">Encrypted Text</label>
+            <textarea id="text" name="text" placeholder="Paste the encrypted text here..." required></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter the password used for encryption..." required>
+            <small style="display: block; margin-top: 4px; color: var(--text-secondary);">
+                You must use the same password that was used to encrypt the text.
+            </small>
+        </div>
+        
+        <div>
+            <button type="submit" class="btn">
+                <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">no_encryption</span>
+                Decrypt
+            </button>
+        </div>
+    </form>
+    
+    {% if result %}
+    <div class="result-box">
+        <h3>Decrypted Result</h3>
+        <button class="copy-btn">Copy</button>
+        <div class="result-text">{{ result }}</div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
